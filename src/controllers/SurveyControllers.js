@@ -15,6 +15,20 @@ class SurveyControllers {
       next(error);
     }
   }
+
+  async update(req, res, next) {
+    try {
+      const { id } = req.params;
+      const { title, initial_date, final_date } = req.body;
+      await knex("tb_survey")
+        .update({ title, initial_date, final_date })
+        .where({ id });
+
+      return res.send();
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = new SurveyControllers();
