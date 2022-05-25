@@ -5,5 +5,6 @@ const SurveyControllers = require("./controllers/SurveyControllers");
 router.get("/surveys", SurveyControllers.findAll);
 router.post("/surveys", SurveyControllers.create);
 router.put("/surveys/:id", SurveyControllers.update);
+router.delete("/surveys/:id", SurveyControllers.delete);
 
 module.exports = router;
