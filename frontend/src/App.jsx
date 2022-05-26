@@ -1,6 +1,6 @@
 import React from "react";
-import Details from "./pages/Details";
-import Home from "./pages/Home";
+import Details from "./pages/surveys/Details";
+import Home from "./pages/surveys/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {

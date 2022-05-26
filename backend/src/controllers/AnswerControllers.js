@@ -9,7 +9,12 @@ class AnswerControllers {
     if (survey_id) {
       query
         .where({ survey_id })
-        .select("tb_answer.id", "tb_answer.field", "tb_answer.votes")
+        .select(
+          "tb_answer.id",
+          "tb_answer.field",
+          "tb_answer.votes",
+          "tb_survey.title"
+        )
         .join("tb_survey", "tb_survey.id", "=", "tb_answer.survey_id");
     }
 

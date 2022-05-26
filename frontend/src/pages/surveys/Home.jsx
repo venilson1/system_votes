@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import PostModal from '../components/PostModal';
-import { helpersFormatDate } from '../helpers/helpersFormatDate';
-import { helpersDefinitionStatus } from '../helpers/helpersDefinitionStatus';
-import api from '../services/api';
+import PostModal from '../../components/PostModal';
+import { helpersFormatDate } from '../../helpers/helpersFormatDate';
+import { helpersDefinitionStatus } from '../../helpers/helpersDefinitionStatus';
+import api from '../../services/api';
 
 export default function Home() {
 
