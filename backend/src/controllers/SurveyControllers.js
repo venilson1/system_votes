@@ -18,6 +18,20 @@ class SurveyControllers {
     }
   }
 
+  async findById(req, res, next) {
+    try {
+      const { id } = req.params;
+      const result = await knex("tb_survey")
+        .select("id", "title", "initial_date", "final_date")
+        .where({ id })
+        .first();
+
+      return res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async findSurveysWithAnswers(req, res) {
     const { survey_id } = req.params;
 
