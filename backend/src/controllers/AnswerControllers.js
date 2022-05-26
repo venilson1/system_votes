@@ -9,8 +9,8 @@ class AnswerControllers {
     if (survey_id) {
       query
         .where({ survey_id })
-        .join("tb_survey", "tb_survey.id", "=", "tb_answer.survey_id")
-        .select("tb_answer.id", "tb_answer.field", "tb_answer.votes");
+        .select("tb_answer.id", "tb_answer.field", "tb_answer.votes")
+        .join("tb_survey", "tb_survey.id", "=", "tb_answer.survey_id");
     }
 
     const results = await query;
@@ -38,6 +38,25 @@ class AnswerControllers {
       const votes = 0;
 
       await knex("tb_answer").update({ field, votes }).where({ id });
+
+      return res.send();
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async updateVotes(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      const { votes } = await knex("tb_answer")
+        .where({ id })
+        .select("votes")
+        .first();
+
+      const newVote = votes + 1;
+
+      await knex("tb_answer").update({ votes: newVote }).where({ id });
 
       return res.send();
     } catch (error) {

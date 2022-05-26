@@ -5,13 +5,14 @@ const surveysWithAnswers = require("../utils/surveysWithAnswers");
 class SurveyControllers {
   async findAll(req, res, next) {
     try {
-      const result = await knex("tb_survey").select(
-        "id",
-        "title",
-        "initial_date",
-        "final_date"
-      );
-      res.json(result);
+      const finished = req.query;
+
+      Object.keys(finished)[0] === "finished";
+
+      const result = await knex("tb_survey")
+        .select("id", "title", "initial_date", "final_date")
+        .orderBy("id");
+      return res.json(result);
     } catch (error) {
       next(error);
     }
@@ -32,6 +33,30 @@ class SurveyControllers {
     } catch (error) {
       next(error);
     }
+  }
+
+  async findFinished(req, res) {
+    const result = await knex("tb_survey")
+      .select("id", "title", "initial_date", "final_date")
+      .where("initial_date", "<", "NOW()")
+      .andWhere("final_date", "<", "NOW()");
+    return res.json(result);
+  }
+
+  async findProgress(req, res) {
+    const result = await knex("tb_survey")
+      .select("id", "title", "initial_date", "final_date")
+      .where("initial_date", "<", "NOW()")
+      .andWhere("final_date", ">", "NOW()");
+    return res.json(result);
+  }
+
+  async findNotStarted(req, res) {
+    const result = await knex("tb_survey")
+      .select("id", "title", "initial_date", "final_date")
+      .where("initial_date", ">", "NOW()")
+      .andWhere("final_date", ">", "NOW()");
+    return res.json(result);
   }
 
   async create(req, res, next) {
