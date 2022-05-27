@@ -1,7 +1,13 @@
 const knex = require("../database");
+const AnswerService = require("../services/AnswerService");
 
 class AnswerControllers {
   async findAll(req, res) {
+    const results = await AnswerService.findAll();
+    return res.json(results);
+  }
+
+  async findAnswerBySurvey(req, res) {
     const { survey_id } = req.params;
 
     const query = knex("tb_answer");

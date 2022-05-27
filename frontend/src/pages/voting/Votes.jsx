@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import api from '../../services/api';
 
 export default function Votes() {
+
+  useEffect(() => {
+    api
+      .get(``)
+  }, []);
 
   return (
     <>
