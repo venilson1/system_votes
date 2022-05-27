@@ -4,6 +4,7 @@ import Home from "./pages/surveys/Home";
 import HomeAnswers from "./pages/answer/HomeAnswers";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DetailsAnswers from "./pages/answer/DetailsAnswers";
+import Votes from "./pages/voting/Votes";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         </header>
 
         <Routes>
+          <Route path="/" element={<Votes />} />
           <Route path="/enquetes" element={<Home />} />
           <Route path="/enquetes/:id/editar" element={<Details />} />
           <Route path="/enquetes/:id_su/respostas" element={<HomeAnswers />} />
