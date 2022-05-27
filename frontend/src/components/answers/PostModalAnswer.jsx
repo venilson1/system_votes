@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom';
 import api from '../../services/api';
 
-export default function PostModal({ showModal, setShowModal }) {
+export default function PostModalAnswer({ showModal, setShowModal }) {
+
+  const { id_su } = useParams();
 
   const initialForm = {
-    title: "",
-    initial_date: "",
-    final_date: ""
+    value: "",
   };
 
   const [formValues, setformValues] = useState(initialForm);
@@ -16,9 +17,9 @@ export default function PostModal({ showModal, setShowModal }) {
     setformValues({ ...formValues, [name]: value });
   };
 
-  const handlerNewSurvey = () => {
+  const handlerNewAnswer = () => {
     api
-      .post("/surveys", formValues)
+      .post(`/surveys/${id_su}/answer`, formValues)
       .catch((err) => {
         console.error("ops! ocorreu um erro " + err);
       })
@@ -38,42 +39,28 @@ export default function PostModal({ showModal, setShowModal }) {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <h3 className="text-3xl font-semibold text-center w-full py-4">
-                  Criar Enquete
+                  Criar Nova Resposta
                 </h3>
                 {/*body*/}
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                   <div className="mb-4">
                     <label
                       className="cursor-pointer block text-gray-700 text-sm font-bold mb-2"
-                      htmlFor="title">
-                      Titulo
+                      htmlFor="field">
+                      Resposta
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 
-                      text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      name="title"
-                      id="title"
+                      text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-slate-4  00"
+                      name="field"
+                      id="field"
                       type="text"
-                      placeholder="Titulo"
-                      value={formValues.title || ""}
+                      placeholder="escreva..."
+                      value={formValues.field || ""}
                       onChange={handlerInputChange}
                       required
                     />
                   </div>
-                  <div className="mb-6">
-                    <label className="cursor-pointer block text-gray-700 text-sm font-bold mb-2" htmlFor="initial_date">
-                      Data Inicial
-                    </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="initial_date" id="initial_date" type="date" placeholder="Inicio" onChange={handlerInputChange} value={formValues.initial_date || ""} />
-                  </div>
-                  <div className="mb-6">
-                    <label className="cursor-pointer block text-gray-700 text-sm font-bold mb-2" htmlFor="final_date">
-                      Data Final
-                    </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="final_date" id="final_date" type="date" placeholder="Final" onChange={handlerInputChange} value={formValues.final_date || ""} />
-                  </div>
-
-
                 </form>
                 {/*footer*/}
                 <div className=" flex items-center justify-center p-6 border-t 
@@ -84,7 +71,7 @@ export default function PostModal({ showModal, setShowModal }) {
                     outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all 
                     duration-150"
                     type="button"
-                    onClick={() => handlerNewSurvey()}
+                    onClick={() => handlerNewAnswer()}
                   >
                     Salvar
                   </button>

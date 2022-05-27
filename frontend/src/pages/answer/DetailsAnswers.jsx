@@ -1,44 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router';
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../services/api';
 
-export default function Details() {
+function DetailsAnswers() {
 
-  const { id } = useParams();
-  const [surveys, setSurveys] = useState([]);
+  const { id_su, id } = useParams();
+
+  const [answers, setAnswers] = useState([]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     api
-      .get("/surveys/" + id)
-      .then((response) => setSurveys(response.data))
+      .get(`/answers/${id}`)
+      .then((response) => setAnswers(response.data))
       .catch((err) => {
         console.error("ops! ocorreu um erro " + err);
       });
   }, [id]);
 
-
   const handlerInputChange = (e) => {
     const { name, value } = e.target;
-    setSurveys({ ...surveys, [name]: value });
+    setAnswers({ ...answers, [name]: value });
   };
 
 
   const handlerUpdateSurvey = () => {
     api
-      .put("/surveys/" + id, surveys)
+      .put(`/answers/${id}`, answers)
       .catch((err) => {
         console.error("ops! ocorreu um erro " + err);
       })
 
-    navigate('/enquetes');
+    navigate(`/enquetes/${id_su}/respostas`);
 
   };
 
   const handlerClosePage = () => {
-    navigate('/enquetes');
+    navigate(`/enquetes/${id_su}/respostas`);
   };
 
   return (
@@ -50,52 +49,16 @@ export default function Details() {
           <div className="mb-4">
             <label
               className="cursor-pointer block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="title">
-              Titulo
+              htmlFor="field">
+              Resposta
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 
                     text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              name="title"
-              id="title"
+              name="field"
+              id="field"
               type="text"
-              value={surveys?.title || ""}
-              onChange={handlerInputChange}
-              required
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-wrap space-x-6">
-          <div className="mb-4">
-            <label className="cursor-pointer block text-gray-700 
-                    text-sm font-bold mb-2"
-              htmlFor="initial_date">
-              Data Inicial
-            </label>
-            <input className="shadow appearance-none border rounded w-full 
-                    py-2 px-3 text-gray-700 leading-tight focus:outline-none 
-                    focus:shadow-outline"
-              name="initial_date"
-              id="initial_date"
-              type="date"
-              value={surveys?.initial_date || ""}
-              onChange={handlerInputChange}
-              required
-            />
-          </div>
-          <div className="mb-6">
-            <label className="cursor-pointer block text-gray-700 
-                    text-sm font-bold mb-2" htmlFor="final_date">
-              Data Final
-            </label>
-            <input className="shadow appearance-none border rounded 
-                    w-full py-2 px-3 text-gray-700 mb-3 leading-tight 
-                    focus:outline-none focus:shadow-outline"
-              name="final_date"
-              id="final_date"
-              type="date"
-              value={surveys?.final_date || ""}
+              value={answers?.field || ""}
               onChange={handlerInputChange}
               required
             />
@@ -125,3 +88,5 @@ export default function Details() {
     </>
   )
 }
+
+export default DetailsAnswers

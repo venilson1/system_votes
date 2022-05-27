@@ -17,6 +17,7 @@ router.put("/surveys/:id", SurveyControllers.update);
 router.delete("/surveys/:id", SurveyControllers.delete);
 
 router.get("/answers/:survey_id/survey", AnswerControllers.findAll);
+router.get("/answers/:id", AnswerControllers.findById);
 router.post("/surveys/:survey_id/answer", AnswerControllers.create);
 router.put("/answers/:id", AnswerControllers.update);
 router.put("/answers/:id/votes", AnswerControllers.updateVotes);

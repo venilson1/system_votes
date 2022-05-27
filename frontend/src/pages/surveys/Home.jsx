@@ -22,7 +22,7 @@ export default function Home() {
 
   const handlerDelete = (e, id) => {
     e.preventDefault();
-    api.delete("/surveys/" + id)
+    api.delete(`/surveys/${id}`)
   }
 
   return (
@@ -49,21 +49,20 @@ export default function Home() {
             </tr>
           </thead>
           {
-            surveys.map((el) => {
+            surveys.map(({ id, title, initial_date, final_date }) => {
               return (
-                <tbody key={el.id}>
+                <tbody key={id}>
                   <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <td className="px-6 py-4 font-medium text-gray-900 
-                    dark:text-white whitespace-nowrap">{el.title}</td>
-                    <td className="px-6 py-4">{helpersFormatDate(el.initial_date)}</td>
-                    <td className="px-6 py-4">{helpersFormatDate(el.final_date)}</td>
-                    <td className="px-6 py-4">{helpersDefinitionStatus(el.initial_date, el.final_date)}</td>
+                    dark:text-white whitespace-nowrap">{title}</td>
+                    <td className="px-6 py-4">{helpersFormatDate(initial_date)}</td>
+                    <td className="px-6 py-4">{helpersFormatDate(final_date)}</td>
+                    <td className="px-6 py-4">{helpersDefinitionStatus(initial_date, final_date)}</td>
                     <td className="space-x-4 cursor-pointer">
-                      <Link to={"/editar/" + el.id} className="text-lime-500">OPÇÕES</Link>
-                      <Link to={"/editar/" + el.id} className="text-yellow-500">EDITAR</Link>
-                      <button type="button" onClick={(e) => handlerDelete(e, el.id)} className="text-red-500">EXCLUIR</button>
+                      <Link to={`/enquetes/${id}/respostas`} className="text-lime-500">RESPOSTAS</Link>
+                      <Link to={`/enquetes/${id}/editar`} className="text-yellow-500">EDITAR</Link>
+                      <button type="button" onClick={(e) => handlerDelete(e, id)} className="text-red-500">EXCLUIR</button>
                     </td>
-
                   </tr>
                 </tbody>
               )

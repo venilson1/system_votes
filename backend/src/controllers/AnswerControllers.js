@@ -22,6 +22,20 @@ class AnswerControllers {
     return res.json(results);
   }
 
+  async findById(req, res, next) {
+    try {
+      const { id } = req.params;
+      const result = await knex("tb_answer")
+        .select("id", "field", "votes")
+        .where({ id })
+        .first();
+
+      return res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async create(req, res) {
     try {
       const { survey_id } = req.params;
