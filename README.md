@@ -2,8 +2,10 @@
   <img alt="system_votes" src="" width="120px" />
 </h1>
 
+![Captura de tela de 2022-05-27 16-04-37](https://user-images.githubusercontent.com/57969262/170774967-d6677b32-48dc-4485-a014-961cfcbf1361.png)
+
 <h3 align="center">
-  System votes
+  Sistema de Votação
 </h3>
 
 <p align="center">Nesse projeto desenvolvido com Nodejs e React, tem a função de criar enquetes e fazendo contagens de votos persistindo no banco de dados postgres utilizando o knexJs para abstrair os dados</p>
