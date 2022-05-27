@@ -23,6 +23,8 @@ export default function Votes() {
         console.error("ops! ocorreu um erro " + err);
       })
 
+    alert('obrigado por votar!!!')
+
   };
 
   return (

@@ -2,7 +2,7 @@ import React from "react";
 import Details from "./pages/surveys/Details";
 import Home from "./pages/surveys/Home";
 import HomeAnswers from "./pages/answer/HomeAnswers";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import DetailsAnswers from "./pages/answer/DetailsAnswers";
 import Votes from "./pages/voting/Votes";
 
@@ -13,10 +13,8 @@ function App() {
         <header>
           <div className="bg-teal-100 mx-auto p-4 flex justify-between">
             <h1 className="font-semibold text-xl">Sistema de votação</h1>
-            <div className="font-semibold text-xl">
-              <div className="input-group relative flex flex-wrap items-stretch w-full mb-4">
-
-              </div>
+            <div className="mt-1 mr-8">
+              <Link to={`/enquetes`} className="">Dashboard</Link>
             </div>
           </div>
         </header>
