@@ -32,10 +32,11 @@ export default function Votes() {
       <div className="flex flex-wrap justify-center text gap-10 m-8">
         {
           surveys?.map(el => {
+
             return (
               <>
                 {
-                  helpersDefinitionStatus(el.initial_date, el.final_date) === 'andamento' ? (
+                  helpersDefinitionStatus(el.initial_date, el.final_date) === 'andamento' && el.answers.length >= 3 ? (
                     <div key={el.id} className="bg-violet-400 max-w-sm rounded overflow-hidden shadow-xl w-1/3">
                       <div className="px-6 py-4 rounded-t-lg bg-zinc-900 text-center">
                         <span className="font-bold text-sm  mb-2  text-zinc-100">{el.title}</span>
@@ -96,7 +97,9 @@ export default function Votes() {
                           <p className="bg-gray-200 px-8 py-1 rounded-2xl text-gray-400">{helpersFormatDate(el.final_date)}</p>
                         </span>
                       </div>
-                      <span className="flex justify-center font-bold text-red-500">{helpersDefinitionStatus(el.initial_date, el.final_date)}</span>
+                      <span className="flex justify-center font-bold text-red-500">{el.answers.length < 3 && <span>Atenção: minimo 3 respostas por enquete</span>}   </span>
+                      <p className="flex justify-center">{helpersDefinitionStatus(el.initial_date, el.final_date)}</p>
+
                     </div>
                   )
                 }

@@ -12,7 +12,9 @@ function App() {
       <Router>
         <header>
           <div className="bg-teal-100 mx-auto p-4 flex justify-between">
-            <h1 className="font-semibold text-xl">Sistema de votação</h1>
+            <h1 className="font-semibold text-xl">
+              <Link to={`/`} className="text-lime-900">Sistema de votação</Link>
+            </h1>
             <div className="mt-1 mr-8">
               <Link to={`/enquetes`} className="">Dashboard</Link>
             </div>
