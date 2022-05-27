@@ -2,7 +2,8 @@
   <img alt="system_votes" src="" width="120px" />
 </h1>
 
-![Captura de tela de 2022-05-27 16-04-37](https://user-images.githubusercontent.com/57969262/170774967-d6677b32-48dc-4485-a014-961cfcbf1361.png)
+
+![Captura de tela de 2022-05-27 16-27-38](https://user-images.githubusercontent.com/57969262/170777649-b6592d9a-f910-4d79-a0f6-e02d7d8e7f11.png)
 
 <h3 align="center">
   Sistema de Votação
